@@ -1,0 +1,129 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--Name：Location+Type+Name-->
+    <!--Start page-->
+    <sys:String x:Key="MINIMIZEBUTTON">Minimize</sys:String>
+    <sys:String x:Key="MAXIMIZEBUTTON">Maximize</sys:String>
+    <sys:String x:Key="CLOSEBUTTON">Close</sys:String>
+    <sys:String x:Key="RESTOREDOWNBUTTON">Restore Down</sys:String>
+    <sys:String x:Key="TAB_HOME">Home</sys:String>
+    <sys:String x:Key="TAB_CART">Cart</sys:String>
+    <sys:String x:Key="TAB_MAINTAINMENT">Maintain</sys:String>
+    <sys:String x:Key="TAB_ABOUT">About</sys:String>
+    <sys:String x:Key="EMPTY_DISPLAY">&#160;</sys:String>
+    
+    <!--Login page-->
+    <sys:String x:Key="LOGIN_MODULE_LOGIN">Login</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_USERNAME">UserName</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_PASSWORD">Password</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_KEEPPWD">Keep password</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_SIGNUP">Sign up</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_FORGOTPWD">Forget password</sys:String>
+    <sys:String x:Key="LOGIN_MODULE_SEND_MSG">Request of login is sent.</sys:String>
+    <!--Sign up page-->
+    <sys:String x:Key="SIGNUP_MODULE_LOCK_MACHINE">Lock Machine：</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_USERNAME">UserName</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_PASSWORD">Password</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_CONFIRM_PASSWORD">Confirm Password</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_NAME">RealName</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_CARDID">ID NO.</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_CARDID_HINT">ID card NO./Passport NO./...</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_EMAIL">Email</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_CANCEL">Cancel</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_JUMP_LOGIN">Jump to login</sys:String>
+
+    <sys:String x:Key="SIGNUP_MODULE_TIP">Enter real info for finding password</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_SEND_MSG">Request of Signup is sent.</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_SUCCESS_MSG">Success</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_PWD_TIP">Use at least 1 letter, 1 numeral, and 8 characters length.</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_USERNAME_TIP">UserName should not be empty</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_PWDMATCH_TIP">Password cann't match with the confirm pwd</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_NAME_TIP">Real name should not be empty</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_CARDID_TIP">Id No. should not be empty</sys:String>
+    <sys:String x:Key="SIGNUP_MODULE_EMAIL_TIP">Email format is error</sys:String>
+
+    <!--Forget pwd-->
+    <sys:String x:Key="FORGETPWD_MODULE_FIND_PWD">Find Password</sys:String>
+    <sys:String x:Key="FORGETPWD_MODULE_SUBMIT">Submit</sys:String>
+    <sys:String x:Key="FORGETPWD_MODULE_SEND_MSG">Request of retrieve is sent.</sys:String>
+
+    <!--Modify pwd-->
+    <sys:String x:Key="MODIFYPWD_MODULE_MODIFY_PWD">Modify Password</sys:String>
+    <sys:String x:Key="MODIFYPWD_MODULE_NEW_PWD">New Password</sys:String>
+    <sys:String x:Key="MODIFYPWD_MODULE_CONFIRM_PWD">Confirm Password</sys:String>
+    <sys:String x:Key="MODIFYPWD_MODULE_SEND_MSG">Request of modification is sent.</sys:String>
+    
+    <!--network error-->
+    <sys:String x:Key="NETWORK_RESPOND_UNKNOWN">Unknown error</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_SUCCESS">Success</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_USER_EXIST">Username exist</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_USER_NOT_EXIST">Username do not exist</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_PWD_ERROR">Password is incorrect</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_RELOGIN_WARNING">Login on other PC</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_MSG_DECODE_ERROR">Message decode failed</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_DB_SAVEORUPDATE_ERROR">Save failed in database</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_CARDID_OR_EMAIL_EXIST">Id No. or Email already exist.</sys:String>
+    <sys:String x:Key="NETWORK_RESPOND_RELOGIN_WARNING_TEXT">Login on other PC, Please login again or log off.</sys:String>
+    
+    <!--dialog-->
+    <sys:String x:Key="DLG_BUTTON_OK">OK</sys:String>
+    <sys:String x:Key="DLG_BUTTON_YES">Yes</sys:String>
+    <sys:String x:Key="DLG_BUTTON_NO">No</sys:String>
+    <sys:String x:Key="DLG_BUTTON_CANCEL">Cancel</sys:String>
+    <sys:String x:Key="DLG_BUTTON_IGORE">Igore</sys:String>
+    <sys:String x:Key="DLG_BUTTON_RELOGIN">Login again</sys:String>
+    <sys:String x:Key="DLG_BUTTON_CANCEL_AND_EXIT">Log off</sys:String>
+    <sys:String x:Key="DLG_TITLE_SHUTDOWN_SYSTEM">Exit</sys:String>
+    <sys:String x:Key="DLG_TITLE_SHUTDOWN_SYSTEM_INFO" xml:space="preserve">Sure to exit？&#x0a;Yes：Exit &#x0a;No：Cancel &#x0a;Igore：Don't do anything</sys:String>
+
+    <!--advertisement-->
+    <sys:String x:Key="ADVERTISE_BUTTON_ENTER" xml:space="preserve">Enter &gt;&gt;</sys:String>
+
+    <!--error report-->
+    <sys:String x:Key="PRODUCT_NAME">LWIR</sys:String>
+    <sys:String x:Key="ERROR_RPT_APOLOGY_CONTENT">LWIR has encountered a problem and closed. We are sorry for the inconvenience.</sys:String>
+    <sys:String x:Key="ERROR_RPT_DEAL_WAY">Please tell LWIR about this problem.</sys:String>
+    <sys:String x:Key="ERROR_RPT_DESCRIPTION">We have created an error report that you can send to help us improve LWIR. We will treat this report as confidential and anonymous.</sys:String>
+    <sys:String x:Key="ERROR_RPT_SEND">_Send Error Report</sys:String>
+    <sys:String x:Key="ERROR_RPT_NOT_SEND">_Don't Send</sys:String>
+    
+    <!--upgrade window-->
+    <sys:String x:Key="UPGRADE_BUTTON_DOWNLOAD">Download</sys:String>
+    <sys:String x:Key="UPGRADE_CHECK_TITLE">Upgrade detection</sys:String>
+    <sys:String x:Key="UPGRADE_CHECKBOX_NOT_SHOW_HINT">Don't ask me again.</sys:String>
+    <sys:String x:Key="UPGRADE_CHECKBOX_NOT_SHOW_HINTINFO">Automatic detection is turned off.</sys:String>
+    <sys:String x:Key="UPGRADE_INFO1" xml:space="preserve">The new version </sys:String>
+    <sys:String x:Key="UPGRADE_INFO2" xml:space="preserve"> of LWIR is available</sys:String>
+    <sys:String x:Key="UPGRADE_INFO3" xml:space="preserve">Your version is </sys:String>
+    <sys:String x:Key="UPGRADE_INFO4">Do you want to install the new version now?</sys:String>
+    <sys:String x:Key="UPGRADE_INFO5">This is the latest version.</sys:String>
+
+    <!--question viewer-->
+    <sys:String x:Key="QUESTION_VIEW_CATALOG">Catalog</sys:String>
+    <sys:String x:Key="QUESTION_VIEW_FAVORITE">Favorites</sys:String>
+    <sys:String x:Key="QUESTION_VIEW_SEARCH_HINT">Search Questions</sys:String>
+    <sys:String x:Key="QUESTION_VIEW_ANSWER_HINT">Answer(s)：</sys:String>
+    <sys:String x:Key="Junior1_KEY">Junior 1</sys:String>
+    <sys:String x:Key="Junior2_KEY">Junior 2</sys:String>
+    <sys:String x:Key="Junior3_KEY">Junior 3</sys:String>
+    <sys:String x:Key="Senior1_KEY">Senior 1</sys:String>
+    <sys:String x:Key="Senior2_KEY">Senior 2</sys:String>
+    <sys:String x:Key="Senior3_KEY">Senior 3</sys:String>
+    <sys:String x:Key="Chinese_KEY">Chinese</sys:String>
+    <sys:String x:Key="Math_KEY">Math</sys:String>
+    <sys:String x:Key="English_KEY">English</sys:String>
+    <sys:String x:Key="Physics_KEY">Physics</sys:String>
+    <sys:String x:Key="Chemistry_KEY">Chemistry</sys:String>
+    <sys:String x:Key="Unknown_KEY">Unknown</sys:String>
+    
+    <!--treeview-->
+    <sys:String x:Key="TREEVIEW_MENU_COLLAPSE_ALL">Collapse all</sys:String>
+    <sys:String x:Key="TREEVIEW_MENU_OPEN">Open</sys:String>
+    <sys:String x:Key="TREEVIEW_MENU_FAVORITE">Add to Favorites</sys:String>
+    <sys:String x:Key="TREEVIEW_MENU_CANCEL_FAVORITE">Remove</sys:String>
+    
+</ResourceDictionary>
+
+

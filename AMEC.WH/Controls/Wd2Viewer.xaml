@@ -1,0 +1,240 @@
+﻿<fwk:BaseWnd x:Class="AMEC.WH.Controls.Wd2Viewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fwk="http://www.LWIR.com/WPF/2017/Framework"
+        xmlns:df="clr-namespace:AMEC.WH.Controls"
+        xmlns:axis="http://www.LWIR.com/WPF/2017/Axis"
+        xmlns:cvt="clr-namespace:AMEC.WH.Converter"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Wd2 Viewer" Height="700" Width="600" CaptionHeight="30"
+        MinWidth="300" MinHeight="100"
+        WindowStartupLocation="Manual" Left="0" Top="0" 
+        Icon="/Sot.ico"
+        MinBtnTooltip="{DynamicResource MINIMIZEBUTTON}" CloseBtnTooltip="{DynamicResource CLOSEBUTTON}">
+
+    <fwk:BaseWnd.Style>
+        <Style>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}" Value="Maximized">
+                    <Setter Property="fwk:BaseWnd.MaxBtnTooltip" Value="{DynamicResource RESTOREDOWNBUTTON}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}" Value="Normal">
+                    <Setter Property="fwk:BaseWnd.MaxBtnTooltip" Value="{DynamicResource MAXIMIZEBUTTON}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </fwk:BaseWnd.Style>
+
+    <fwk:BaseWnd.CaptionContent>
+        <TextBlock Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}" FontSize="14" Foreground="White" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+    </fwk:BaseWnd.CaptionContent>
+
+    <fwk:BaseWnd.Resources>
+        <cvt:Array2Count x:Key="Array2Count"/>
+
+        <DataTemplate x:Key="Wd2ItemTemplate">
+            <df:ExpanderEx IsExpanded="True">
+                <df:ExpanderEx.Header>
+                    <TextBlock>
+                        <Run Text="{Binding CurFileInfoEx.Name}"/>
+                        <Run Text="("/>
+                        <Run Text="{Binding CurRecipeInfo.SamplingItemCount}"/>
+                        <Run Text=")"/>
+
+                        <TextBlock.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurFileInfoEx.IsExists}" Value="False">
+                                        <Setter Property="TextBlock.Foreground" Value="Red"/>
+                                        <Setter Property="TextBlock.ToolTip" Value="File is not found."/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </df:ExpanderEx.Header>
+
+                <df:ExpanderEx.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <df:ExpanderEx Grid.Row="0" Header="Recipe Info" Margin="10,0,0,0" IsExpanded="True">
+                            <df:ExpanderEx.Content>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Unique wafer No.："/>
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Text="PM Module Id：" Margin="0,2"/>
+                                    <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Total recipe step："/>
+                                    <TextBlock Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Completed recipe step：" Margin="0,2"/>
+                                    <TextBlock Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Sampling interval[ms]："/>
+                                    <TextBlock Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Recipe start time：" Margin="0,2"/>
+                                    <TextBlock Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Recipe end time："/>
+                                    <TextBlock Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Wafer Id：" Margin="0,2"/>
+                                    <TextBlock Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Recipe name："/>
+                                    <TextBlock Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Sampling item count：" Margin="0,2"/>
+                                    <TextBlock Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Sampling count："/>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.UniqueWaferNumber}"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.MOD_ID}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.TotalStepCount}"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.CompletedStepCount}"/>
+                                    <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.SamplingInterval}"/>
+                                    <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.RecipeStartTime,StringFormat='dd/MM/yyyy HH:mm:ss:fff'}"/>
+                                    <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.RecipeEndTime,StringFormat='dd/MM/yyyy HH:mm:ss:fff'}"/>
+                                    <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.WaferId}"/>
+                                    <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.RecipeName}" ToolTip="{Binding CurRecipeInfo.RecipeFullName}"/>
+                                    <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.SamplingItemCount}"/>
+                                    <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding CurRecipeInfo.SamplingCount}"/>
+                                </Grid>
+                            </df:ExpanderEx.Content>
+                        </df:ExpanderEx>
+
+                        <df:ExpanderEx Grid.Row="1" Margin="10,0,0,0" IsExpanded="True">
+                            <df:ExpanderEx.Header>
+                                <TextBlock>
+                                    <Run Text="Recipe Item Info"/>
+                                    <Run Text="("/>
+                                    <Run Text="{Binding RecipeItems, Converter={StaticResource Array2Count}}"/>
+                                    <Run Text=")"/>
+                                </TextBlock>
+                            </df:ExpanderEx.Header>
+
+                            <df:ExpanderEx.Content>
+                                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                  ItemsSource="{Binding RecipeItems}" Height="Auto" MaxHeight="200" RowHeaderWidth="0" CanUserResizeRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="Auto" Header="Show Curves">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Checked">
+                                                                <fwk:EventToCommand Command="{Binding DataContext.CurvesChangedCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                                            </i:EventTrigger>
+                                                            <i:EventTrigger EventName="Unchecked">
+                                                                <fwk:EventToCommand Command="{Binding DataContext.CurvesChangedCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </CheckBox>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="Auto" Header="Color">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <fwk:ColorPicker SelectedBrush="{Binding CurveBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Width="Auto" Header="Attribute Index" Binding="{Binding AttributeIndex}"/>
+                                        <DataGridTextColumn Width="Auto" Header="Attribute Type" Binding="{Binding AttributeType}"/>
+                                        <DataGridTextColumn Width="Auto" Header="Unit" Binding="{Binding Unit}"/>
+                                        <DataGridTextColumn Header="Attribute Name" Binding="{Binding AttributeName}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </df:ExpanderEx.Content>
+                        </df:ExpanderEx>
+
+                        <df:ExpanderEx Grid.Row="2" Margin="10,0,0,0">
+                            <df:ExpanderEx.Header>
+                                <TextBlock>
+                                    <Run Text="Step Info"/>
+                                    <Run Text="("/>
+                                    <Run Text="{Binding WD2StepInfos, Converter={StaticResource Array2Count}}"/>
+                                    <Run Text=")"/>
+                                </TextBlock>
+                            </df:ExpanderEx.Header>
+
+                            <df:ExpanderEx.Content>
+                                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+                                  ItemsSource="{Binding WD2StepInfos}" Height="Auto" MaxHeight="200" RowHeaderWidth="0" CanUserResizeRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Width="Auto" Header="Start Time" Binding="{Binding StepStartTime,StringFormat='dd/MM/yyyy HH:mm:ss:fff'}"/>
+                                        <DataGridTextColumn Width="Auto" Header="End Time" Binding="{Binding StepEndTime,StringFormat='dd/MM/yyyy HH:mm:ss:fff'}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </df:ExpanderEx.Content>
+                        </df:ExpanderEx>
+                    </Grid>
+                </df:ExpanderEx.Content>
+            </df:ExpanderEx>
+        </DataTemplate>
+    </fwk:BaseWnd.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="50" Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition MinWidth="50" Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" ItemTemplate="{StaticResource Wd2ItemTemplate}" ItemsSource="{Binding WD2Infos}" 
+                 Background="Transparent" BorderThickness="0" FontSize="12">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00283F" Width="5"/>
+
+        <axis:AxesControl Grid.Column="2" 
+                          DrawFPS="False" IsBoxed="True" IsDotDash="True" 
+                          IsSecondaryLineVisible="True" IsRollEnabled="True"
+                          XGapCount="5" YGapCount="5"
+                          SecondaryGridBrush="#195E94" AxisBrush="#00283F" AxisBackground="#03344F" Background="#03344F"
+                          TicksBrush="White" TicksScaleBrush="White"
+                          MinX="{Binding MinX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          MaxX="{Binding MaxX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          MinY="{Binding MinY, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          MaxY="{Binding MaxY,Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          CurvesList="{Binding CurvesList,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</fwk:BaseWnd>

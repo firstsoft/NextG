@@ -1,0 +1,67 @@
+﻿<fwk:BaseWnd x:Class="LWIR.Window.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fwk="http://www.LWIR.com/WPF/2017/Framework"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="About" Height="300" Width="600" CaptionHeight="30"
+        ResizeMode="NoResize" Topmost="True"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Sot.ico"
+        MinBtnTooltip="{DynamicResource MINIMIZEBUTTON}" CloseBtnTooltip="{DynamicResource CLOSEBUTTON}">
+
+    <fwk:BaseWnd.Style>
+        <Style>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}" Value="Maximized">
+                    <Setter Property="fwk:BaseWnd.MaxBtnTooltip" Value="{DynamicResource RESTOREDOWNBUTTON}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Self}}" Value="Normal">
+                    <Setter Property="fwk:BaseWnd.MaxBtnTooltip" Value="{DynamicResource MAXIMIZEBUTTON}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </fwk:BaseWnd.Style>
+
+    <fwk:BaseWnd.CaptionContent>
+        <TextBlock Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}" FontSize="14" Foreground="White" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+    </fwk:BaseWnd.CaptionContent>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock FontSize="12" Foreground="White" Margin="5">
+            <Run Text="· View all the details of *.sh2/*.wh3/*.wd2"/>
+            <LineBreak/>
+            <Run Text="· Load all the files in the memory to speed up search"/>
+            <LineBreak/>
+            <Run Text="· Show the details by the structure of file"/>
+            <LineBreak/>
+            <Run Text="· Show the curves by OpenGL to speed up drawing in WPF"/>
+            <LineBreak/>
+            <Run Text="· Language changed only for frame except content"/>
+            <LineBreak/>
+            <Run Text="· Support to set directory manually and automatically by environment variable"/>
+            <LineBreak/>
+            <Run Text="· CLI/C++ to speed up reading file in C#"/>
+            <LineBreak/>
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock Text="Contact:" FontSize="14" Foreground="White"/>
+            <TextBlock Text="SudiFan@amecnsh.com" TextDecorations="Underline" FontSize="14" Foreground="White" Margin="5,0" Cursor="Hand">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction Command="{Binding EmailBtnCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBlock>
+        </StackPanel>
+        
+        <CheckBox Grid.Row="1" Content="Show tips always" IsChecked="{Binding IsTipsShow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  Margin="5" FontSize="14" Foreground="White" HorizontalAlignment="Left"/>
+    </Grid>
+</fwk:BaseWnd>

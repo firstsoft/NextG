@@ -1,0 +1,50 @@
+﻿<wnd:BaseWnd x:Class="LWIR.NET.Common.Windows.QuestionDialogBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wnd="http://www.LWIR.com/WPF/2017/Framework"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MinBtnTooltip="{DynamicResource MINIMIZEBUTTON}" CloseBtnTooltip="{DynamicResource CLOSEBUTTON}"
+        mc:Ignorable="d"
+        d:DesignHeight="300" d:DesignWidth="600">
+
+    <wnd:BaseWnd.CaptionContent>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Image Source="pack://application:,,,/LWIR.NET.Common;Component/Images/LWIR.png" 
+                   VerticalAlignment="Center" Stretch="Fill" Margin="0,2"/>
+
+            <TextBlock Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}"
+                           Foreground="#DCDCDC" VerticalAlignment="Center" Margin="5,0" FontWeight="Bold"/>
+        </StackPanel>
+    </wnd:BaseWnd.CaptionContent>
+
+    <Grid Margin="5">
+        <Rectangle Stroke="#71899e" StrokeDashArray="4,4" StrokeThickness="0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" Margin="10" Width="64" Height="64"
+                   Source="pack://application:,,,/LWIR.NET.Common;Component/Images/Question.png">
+            </Image>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Text, RelativeSource={RelativeSource AncestorType=Window}}" 
+                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom" TextWrapping="Wrap" Margin="10,20" Foreground="LightGray"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Width="75" Height="25" Content="{Binding Path=YesBtnText, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource CommonBtnStyle}" Click="OKButton_Click"/>
+                <Button Width="75" Height="25" Margin="10,0" Content="{Binding Path=NoBtnText, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource CommonBtnStyle}" Click="CancelButton_Click"/>
+                <Button Width="75" Height="25" Content="{Binding Path=CancelBtnText, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource CommonBtnStyle}" Click="CancelButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</wnd:BaseWnd>

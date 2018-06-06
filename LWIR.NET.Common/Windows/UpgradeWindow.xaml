@@ -1,0 +1,108 @@
+﻿<wnd:BaseWnd x:Class="LWIR.NET.Common.Windows.UpgradeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wnd="http://www.LWIR.com/WPF/2017/Framework"
+        xmlns:cvt="clr-namespace:LWIR.NET.Common.Converter"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        Width="520" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MinBtnTooltip="{DynamicResource MINIMIZEBUTTON}" CloseBtnTooltip="{DynamicResource CLOSEBUTTON}"
+        Title="{DynamicResource UPGRADE_CHECK_TITLE}"
+        mc:Ignorable="d"
+        d:DesignHeight="300" d:DesignWidth="600">
+
+    <wnd:BaseWnd.Resources>
+        <cvt:Versions2Visibility x:Key="Versions2Visibility"/>
+    </wnd:BaseWnd.Resources>
+
+    <wnd:BaseWnd.CaptionContent>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Image Source="pack://application:,,,/LWIR.NET.Common;Component/Images/LWIR.png" 
+                   VerticalAlignment="Center" Stretch="Fill" Margin="0,2"/>
+
+            <TextBlock Text="{Binding Path=Title, RelativeSource={RelativeSource AncestorType=Window}}"
+                           Foreground="#DCDCDC" VerticalAlignment="Center" Margin="5,0" FontWeight="Bold"/>
+        </StackPanel>
+    </wnd:BaseWnd.CaptionContent>
+
+    <Grid Margin="5">
+        <Rectangle Stroke="#71899e" StrokeDashArray="4,4" StrokeThickness="0.5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Width="64" Height="64"
+                   Source="pack://application:,,,/LWIR.NET.Common;Component/Images/Hint.png">
+            </Image>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextWrapping="Wrap" Margin="10,20" Foreground="LightGray">
+                <Run Text="{DynamicResource UPGRADE_INFO1}"/>
+                <Run Text="{Binding Path=NewVersion, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                <Run Text="{DynamicResource UPGRADE_INFO2}"/>
+                <LineBreak/>
+                <Run Text="{DynamicResource UPGRADE_INFO3}"/>
+                <Run Text="{Binding Path=OldVersion, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                <LineBreak/>
+                <Run Text="{DynamicResource UPGRADE_INFO4}"/>
+
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource Versions2Visibility}" ConverterParameter="+">
+                        <Binding Path="NewVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                        <Binding Path="OldVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextWrapping="Wrap" Margin="10,20" Foreground="LightGray"
+                       Text="{DynamicResource UPGRADE_INFO5}">
+
+                <TextBlock.Visibility>
+                    <MultiBinding Converter="{StaticResource Versions2Visibility}" ConverterParameter="-">
+                        <Binding Path="NewVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                        <Binding Path="OldVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                    </MultiBinding>
+                </TextBlock.Visibility>
+            </TextBlock>
+
+            <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Button Width="75" Height="25" Content="{DynamicResource UPGRADE_BUTTON_DOWNLOAD}" Style="{StaticResource CommonBtnStyle}" Click="OKButton_Click">
+                        <Button.Visibility>
+                            <MultiBinding Converter="{StaticResource Versions2Visibility}" ConverterParameter="+">
+                                <Binding Path="NewVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                                <Binding Path="OldVersion" RelativeSource="{RelativeSource AncestorType=Window}"/>
+                            </MultiBinding>
+                        </Button.Visibility>
+                    </Button>
+
+                    <Button Width="75" Height="25" Margin="10,0,0,0" Content="{DynamicResource DLG_BUTTON_CANCEL}" Style="{StaticResource CommonBtnStyle}" Click="CancelButton_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <CheckBox x:Name="NotShwHintCkBox" Content="{DynamicResource UPGRADE_CHECKBOX_NOT_SHOW_HINT}" VerticalAlignment="Center" Foreground="#DCDCDC"
+                              IsChecked="{Binding Path=IsNotShowHint, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="{DynamicResource UPGRADE_CHECKBOX_NOT_SHOW_HINTINFO}" VerticalAlignment="Center" Margin="5,0" Foreground="#D44027">
+                        <TextBlock.Style>
+                            <Style>
+                                <Setter Property="TextBlock.Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=IsChecked, ElementName=NotShwHintCkBox}" Value="True">
+                                        <Setter Property="TextBlock.Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</wnd:BaseWnd>
